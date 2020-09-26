@@ -1,8 +1,87 @@
 import axios from 'axios';
 
-export const API_KEY = 'chave_aqui';
+export const API_KEY = 'a590411a89ffa39d5eb8f6e95182faef';
 
-export const IMAGE_PATH = 'https://image.tmdb.org/t/p/w440_and_h660_face';
+export const IMAGE_PATH = 'https://image.tmdb.org/t/p/w780';
+
+export const genres = [
+  {
+    id: 28,
+    name: 'Ação',
+  },
+  {
+    id: 12,
+    name: 'Aventura',
+  },
+  {
+    id: 16,
+    name: 'Animação',
+  },
+  {
+    id: 35,
+    name: 'Comédia',
+  },
+  {
+    id: 80,
+    name: 'Crime',
+  },
+  {
+    id: 99,
+    name: 'Documentário',
+  },
+  {
+    id: 18,
+    name: 'Drama',
+  },
+  {
+    id: 10751,
+    name: 'Família',
+  },
+  {
+    id: 14,
+    name: 'Fantasia',
+  },
+  {
+    id: 36,
+    name: 'História',
+  },
+  {
+    id: 27,
+    name: 'Terror',
+  },
+  {
+    id: 10402,
+    name: 'Música',
+  },
+  {
+    id: 9648,
+    name: 'Mistério',
+  },
+  {
+    id: 10749,
+    name: 'Romance',
+  },
+  {
+    id: 878,
+    name: 'Ficção científica',
+  },
+  {
+    id: 10770,
+    name: 'Cinema TV',
+  },
+  {
+    id: 53,
+    name: 'Thriller',
+  },
+  {
+    id: 10752,
+    name: 'Guerra',
+  },
+  {
+    id: 37,
+    name: 'Faroeste',
+  },
+];
 
 const api = axios.create({
   baseURL: 'https://api.themoviedb.org/3',
