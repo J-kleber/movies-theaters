@@ -2,6 +2,7 @@ import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 
 import Dashboard from '../pages/Dashboard';
+import MovieDetails from '../pages/MovieDetails';
 
 const Stack = createStackNavigator();
 
@@ -16,6 +17,7 @@ const AppRoutes: React.FC = () => (
     initialRouteName="Dashboard"
   >
     <Stack.Screen name="Dashboard" component={Dashboard} />
+    <Stack.Screen name="MovieDetails" component={MovieDetails} />
   </Stack.Navigator>
 );
 

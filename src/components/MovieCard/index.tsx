@@ -5,6 +5,7 @@ import { Animated, Dimensions, Text, View } from 'react-native';
 import { ProgressCircle } from 'react-native-svg-charts';
 import moment from 'moment';
 
+import { useNavigation } from '@react-navigation/native';
 import { colors } from '../../themes';
 import IMovie from '../../interfaces/IMovie';
 import { IMAGE_PATH } from '../../services/api';
@@ -12,6 +13,7 @@ import { IMAGE_PATH } from '../../services/api';
 import {
   Container,
   EmptyContainer,
+  ClickableContainer,
   Image,
   MovieInfo,
   Title,
@@ -31,6 +33,8 @@ interface IMovieCardProps {
 }
 
 const MovieCard = React.memo<IMovieCardProps>(({ index, item, scrollX }) => {
+  const { navigate } = useNavigation();
+
   const { width } = Dimensions.get('window');
   const ITEM_SIZE = width * 0.75;
   const EMPTY_ITEM_SIZE = (width - ITEM_SIZE) / 2;
@@ -57,11 +61,18 @@ const MovieCard = React.memo<IMovieCardProps>(({ index, item, scrollX }) => {
           },
         ]}
       >
-        <Image
-          source={{ uri: IMAGE_PATH + item.poster_path }}
-          resizeMode={'contain'}
-        />
-        <Title>{item.title}</Title>
+        <ClickableContainer
+          style={{ width: '100%' }}
+          underlayColor={'trasparent'}
+          rippleColor={'transparent'}
+          onPress={() => navigate('MovieDetails', { movie: item })}
+        >
+          <Image
+            source={{ uri: IMAGE_PATH + item.poster_path }}
+            resizeMode={'contain'}
+          />
+          <Title>{item.title}</Title>
+        </ClickableContainer>
         <MovieInfo>
           <ContainerItens>
             <TitleItem>{item.vote_count}</TitleItem>

@@ -1,5 +1,6 @@
 import styled, { css } from 'styled-components/native';
 import { Dimensions, Animated, StyleSheet } from 'react-native';
+import { RectButton } from 'react-native-gesture-handler';
 import { colors } from '../../themes';
 
 const { width, height } = Dimensions.get('window');
@@ -10,6 +11,10 @@ export const Container = styled.View`
 
 export const EmptyContainer = styled.View`
   width: ${(width - width * 0.75) / 2}px;
+`;
+
+export const ClickableContainer = styled(RectButton)`
+  width: 100%;
 `;
 
 export const Image = styled.Image`
