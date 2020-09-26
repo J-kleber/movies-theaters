@@ -1,13 +1,19 @@
 import React, { useEffect, useState } from 'react';
+import moment from 'moment';
 import { useNavigation } from '@react-navigation/native';
 import { RectButton } from 'react-native-gesture-handler';
 import { ProgressCircle } from 'react-native-svg-charts';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
-import moment from 'moment';
 import { FlatList } from 'react-native';
-import IMovie from '../../interfaces/IMovie';
+
 import api, { API_KEY, IMAGE_PATH } from '../../services/api';
+
 import { colors } from '../../themes';
+
+import noImage from '../../assets/sem-foto.png';
+
+import IGender from '../../interfaces/IGender';
+import IMovie from '../../interfaces/IMovie';
 
 import {
   Container,
@@ -25,7 +31,6 @@ import {
   ContainerGraph,
   TextScore,
 } from './styles';
-import IGender from '../../interfaces/IGender';
 
 interface IMovieDetailsProps {
   route: {
@@ -86,11 +91,15 @@ const MovieDetails: React.FC<IMovieDetailsProps> = ({ route }) => {
             </RectButton>
           </Header>
           <Image
-            source={{
-              uri: movie.backdrop_path
-                ? IMAGE_PATH + movie.backdrop_path
-                : IMAGE_PATH + movie.poster_path,
-            }}
+            source={
+              !movie.poster_path || !movie.backdrop_path
+                ? noImage
+                : {
+                    uri: movie.poster_path
+                      ? IMAGE_PATH + movie.poster_path
+                      : IMAGE_PATH + movie.backdrop_path,
+                  }
+            }
             resizeMode="cover"
           />
         </TopContent>

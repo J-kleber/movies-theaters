@@ -4,8 +4,8 @@ import { Animated, Dimensions, Text, View } from 'react-native';
 
 import { ProgressCircle } from 'react-native-svg-charts';
 import moment from 'moment';
-
 import { useNavigation } from '@react-navigation/native';
+import noImage from '../../assets/sem-foto-card.png';
 import { colors } from '../../themes';
 import IMovie from '../../interfaces/IMovie';
 import { IMAGE_PATH } from '../../services/api';
@@ -68,11 +68,15 @@ const MovieCard = React.memo<IMovieCardProps>(({ index, item, scrollX }) => {
           onPress={() => navigate('MovieDetails', { movie: item })}
         >
           <Image
-            source={{
-              uri: item.poster_path
-                ? IMAGE_PATH + item.poster_path
-                : IMAGE_PATH + item.backdrop_path,
-            }}
+            source={
+              !item.poster_path || !item.backdrop_path
+                ? noImage
+                : {
+                    uri: item.poster_path
+                      ? IMAGE_PATH + item.poster_path
+                      : IMAGE_PATH + item.backdrop_path,
+                  }
+            }
             resizeMode={'contain'}
           />
           <Title>{item.title}</Title>
