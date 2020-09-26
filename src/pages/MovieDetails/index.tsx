@@ -86,7 +86,11 @@ const MovieDetails: React.FC<IMovieDetailsProps> = ({ route }) => {
             </RectButton>
           </Header>
           <Image
-            source={{ uri: IMAGE_PATH + movie.backdrop_path }}
+            source={{
+              uri: movie.backdrop_path
+                ? IMAGE_PATH + movie.backdrop_path
+                : IMAGE_PATH + movie.poster_path,
+            }}
             resizeMode="cover"
           />
         </TopContent>

@@ -68,7 +68,11 @@ const MovieCard = React.memo<IMovieCardProps>(({ index, item, scrollX }) => {
           onPress={() => navigate('MovieDetails', { movie: item })}
         >
           <Image
-            source={{ uri: IMAGE_PATH + item.poster_path }}
+            source={{
+              uri: item.poster_path
+                ? IMAGE_PATH + item.poster_path
+                : IMAGE_PATH + item.backdrop_path,
+            }}
             resizeMode={'contain'}
           />
           <Title>{item.title}</Title>

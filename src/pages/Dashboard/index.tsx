@@ -5,20 +5,10 @@ import React, {
   useState,
   useMemo,
 } from 'react';
-import {
-  StatusBar,
-  Text,
-  View,
-  FlatList,
-  Image,
-  Dimensions,
-  Animated,
-  TouchableOpacity,
-  Platform,
-  ActivityIndicator,
-} from 'react-native';
+import { StatusBar, FlatList, Dimensions, Animated } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
-import { RectButton } from 'react-native-gesture-handler';
+import Feather from 'react-native-vector-icons/Feather';
+
 import IMovie from '../../interfaces/IMovie';
 import Loading from '../../components/Loading';
 import MovieCard from '../../components/MovieCard';
@@ -26,7 +16,8 @@ import FilterCard from '../../components/FilterCard';
 
 import api, { API_KEY, genres } from '../../services/api';
 import { colors } from '../../themes';
-import { ContainerFilter, TitleFilter } from './styles';
+import { ContainerFilter, Title, TitleFilter } from './styles';
+import { useMovie } from '../../hooks/movies';
 
 interface IMovieParamsProps {
   results: IMovie[];
@@ -40,59 +31,64 @@ const { width, height } = Dimensions.get('window');
 const ITEM_SIZE = width * 0.75;
 
 const Dashboard: React.FC = () => {
-  const [movies, setMovies] = useState<IMovie[]>([] as IMovie[]);
-  const scrollX = useRef(new Animated.Value(0)).current;
-  const [filterGender, setFilterGender] = useState([] as number[]);
-  const [page, setPage] = useState(1);
+  const { page, setPage, movies } = useMovie();
 
-  useEffect(() => {
-    const getMovie = async (): Promise<void> => {
-      const response = await api.get<IMovieParamsProps>(
-        `movie/upcoming?api_key=${API_KEY}&language=pt-BR&page=${page}`,
-      );
-      if (page === 1) {
-        setMovies([
-          {
-            id: -1,
-            title: 'empty_effect',
-            vote_average: 0,
-            vote_count: 0,
-            release_date: new Date('2020-10-10'),
-            backdrop_path: '',
-            poster_path: '',
-            genre_ids: [0],
-          },
-          ...response.data.results,
-          {
-            id: -2,
-            title: 'empty_effect',
-            vote_average: 0,
-            vote_count: 0,
-            release_date: new Date('2020-10-10'),
-            backdrop_path: '',
-            poster_path: '',
-            genre_ids: [0],
-          },
-        ]);
-      } else {
-        setMovies(oldMovies => [
-          ...oldMovies
-            .filter(movie => movie.id !== -2)
-            .concat(response.data.results, {
-              id: -2,
-              title: 'empty_effect',
-              vote_average: 0,
-              vote_count: 0,
-              release_date: new Date('2020-10-10'),
-              backdrop_path: '',
-              poster_path: '',
-              genre_ids: [0],
-            }),
-        ]);
-      }
-    };
-    getMovie();
-  }, [page]);
+  const scrollX = useRef(new Animated.Value(0)).current;
+
+  // const [movies, setMovies] = useState<IMovie[]>([] as IMovie[]);
+  // const [page, setPage] = useState(1);
+  const [filterGender, setFilterGender] = useState([] as number[]);
+
+  // useEffect(() => {
+  //   const getMovie = async (): Promise<void> => {
+  //     const response = await api.get<IMovieParamsProps>(
+  //       `movie/upcoming?api_key=${API_KEY}&language=pt-BR&page=${page}`,
+  //     );
+  //     if (page === 1) {
+  //       setMovies([
+  //         {
+  //           id: -1,
+  //           title: 'empty_effect',
+  //           vote_average: 0,
+  //           vote_count: 0,
+  //           release_date: new Date('2020-10-10'),
+  //           backdrop_path: '',
+  //           poster_path: '',
+  //           genre_ids: [0],
+  //         },
+  //         ...response.data.results,
+  //         {
+  //           id: -2,
+  //           title: 'empty_effect',
+  //           vote_average: 0,
+  //           vote_count: 0,
+  //           release_date: new Date('2020-10-10'),
+  //           backdrop_path: '',
+  //           poster_path: '',
+  //           genre_ids: [0],
+  //         },
+  //       ]);
+  //       setLoading(false);
+  //     } else {
+  //       setMovies(oldMovies => [
+  //         ...oldMovies
+  //           .filter(movie => movie.id !== -2)
+  //           .concat(response.data.results, {
+  //             id: -2,
+  //             title: 'empty_effect',
+  //             vote_average: 0,
+  //             vote_count: 0,
+  //             release_date: new Date('2020-10-10'),
+  //             backdrop_path: '',
+  //             poster_path: '',
+  //             genre_ids: [0],
+  //           }),
+  //       ]);
+  //     }
+  //   };
+  //   console.log('dim dim dim');
+  //   getMovie();
+  // }, [page, setLoading]);
 
   const handleFilterGender = useCallback(
     (id: number) => {
@@ -139,21 +135,19 @@ const Dashboard: React.FC = () => {
           const currentPage = page + 1;
           setPage(currentPage);
         }}
-        onEndReachedThreshold={0.2}
+        onEndReachedThreshold={0.9}
         renderItem={({ item, index }) => (
           <MovieCard index={index} item={item} scrollX={scrollX} />
         )}
       />
     );
-  }, [filterGender, movies, scrollX, page]);
-
-  if (movies.length === 0) {
-    return <Loading />;
-  }
+  }, [filterGender, movies, scrollX, page, setPage]);
 
   return (
     <LinearGradient colors={colors.default.gradient} style={{ flex: 1 }}>
-      <StatusBar backgroundColor={colors.default.primaryColor} />
+      <Title>
+        <Feather name="film" size={30} color={colors.default.filmIcon} /> Filmes
+      </Title>
       <ContainerFilter>
         <TitleFilter>Filtros</TitleFilter>
         <FlatList

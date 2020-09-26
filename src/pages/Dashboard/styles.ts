@@ -12,6 +12,15 @@ export const ContainerFilter = styled.View`
   height: auto;
 `;
 
+export const Title = styled.Text`
+  color: ${colors.default.specialText};
+  margin-top: 30px;
+  font-size: 30px;
+  margin-left: 30px;
+  font-family: 'RobotoSlab-Medium';
+  font-weight: bold;
+`;
+
 export const TitleFilter = styled.Text`
   color: ${colors.default.specialText};
   font-size: 18px;

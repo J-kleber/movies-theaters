@@ -11,5 +11,6 @@ export const colors = {
     backgroundGenresCard: '#526064',
     backgroundGenresCardActive: '#c6385f',
     arrowBack: '#f7f5f5',
+    filmIcon: '#c6385f',
   },
 };

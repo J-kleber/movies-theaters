@@ -13,7 +13,7 @@ export const TopContent = styled.View`
 export const Header = styled.View`
   flex-direction: row;
   position: absolute;
-  top: 20px;
+  top: 40px;
   left: 20px;
   z-index: 1;
 `;
@@ -78,7 +78,7 @@ export const SubTitle = styled.Text`
 `;
 
 export const DescriptionContainer = styled.ScrollView`
-  flex: 1;
+  flex: 0.8;
   margin: 0px 30px;
   margin-top: 20px;
 `;

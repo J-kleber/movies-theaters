@@ -1,13 +1,19 @@
 import React from 'react';
-import { ActivityIndicator } from 'react-native';
+import { ActivityIndicator, ImageBackground } from 'react-native';
+
+import loadingImg from '../../assets/loading3.png';
+
 import { Container, TextLoading } from './styles';
 import { colors } from '../../themes';
 
 const Loading: React.FC = () => (
-  <Container>
-    <ActivityIndicator color={colors.default.primaryColor} size={80} />
-    <TextLoading>Carregando...</TextLoading>
-  </Container>
+  <>
+    <ImageBackground source={loadingImg} style={{ flex: 1 }} />
+    <Container>
+      <TextLoading>Carregando </TextLoading>
+      <ActivityIndicator color={colors.default.progressBar} size={50} />
+    </Container>
+  </>
 );
 
 export default Loading;
