@@ -1,5 +1,6 @@
 import { RectButton } from 'react-native-gesture-handler';
 import styled, { css } from 'styled-components/native';
+import { Platform } from 'react-native';
 import { colors } from '../../themes';
 
 interface IContainerProps {
@@ -9,7 +10,7 @@ interface IContainerProps {
 export const Container = styled(RectButton)<IContainerProps>`
   margin: 0px 10px;
   padding: 3px 10px;
-  border-radius: 20px;
+  border-radius: ${Platform.OS === 'ios' ? 15 : 20}px;
 
   ${props =>
     props.active &&
