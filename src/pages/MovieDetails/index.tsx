@@ -100,8 +100,8 @@ const MovieDetails: React.FC<IMovieDetailsProps> = ({ route }) => {
                 ? noImage
                 : {
                     uri: movie.poster_path
-                      ? IMAGE_PATH + movie.poster_path
-                      : IMAGE_PATH + movie.backdrop_path,
+                      ? IMAGE_PATH + movie.backdrop_path
+                      : IMAGE_PATH + movie.poster_path,
                   }
             }
             resizeMode="cover"
