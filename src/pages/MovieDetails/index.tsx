@@ -21,6 +21,7 @@ import {
   Header,
   Image,
   BottomContent,
+  ContainerTitle,
   Title,
   TagsContainer,
   TagItem,
@@ -108,7 +109,10 @@ const MovieDetails: React.FC<IMovieDetailsProps> = ({ route }) => {
           />
         </TopContent>
         <BottomContent colors={colors.default.gradient}>
-          <Title testID="movie-title">{movieDetail.title}</Title>
+          <ContainerTitle>
+            <Title testID="movie-title">{movieDetail.title}</Title>
+          </ContainerTitle>
+
           {!!movieDetail.genres && (
             <TagsContainer>
               <FlatList

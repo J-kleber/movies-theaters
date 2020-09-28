@@ -30,6 +30,10 @@ export const BottomContent = styled(LinearGradient)`
   z-index: 99999;
 `;
 
+export const ContainerTitle = styled.ScrollView`
+  flex: 1;
+`;
+
 export const Title = styled.Text`
   margin: 0px 30px;
   margin-top: 10px;
