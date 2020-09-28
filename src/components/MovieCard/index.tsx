@@ -17,6 +17,7 @@ import {
   Image,
   MovieInfo,
   Title,
+  ContainerTitle,
   ContainerItens,
   ContainerItensMiddle,
   ContainerGraph,
@@ -61,7 +62,6 @@ const MovieCard = React.memo<IMovieCardProps>(({ index, item, scrollX }) => {
         ]}
       >
         <ClickableContainer
-          style={{ width: '100%' }}
           underlayColor={'trasparent'}
           rippleColor={'transparent'}
           onPress={() => navigate('MovieDetails', { movie: item })}
@@ -80,8 +80,11 @@ const MovieCard = React.memo<IMovieCardProps>(({ index, item, scrollX }) => {
             }
             resizeMode={'contain'}
           />
-          <Title>{item.title}</Title>
         </ClickableContainer>
+        <ContainerTitle showsVerticalScrollIndicator={false}>
+          <Title>{item.title}</Title>
+        </ContainerTitle>
+
         <MovieInfo>
           <ContainerItens>
             <TitleItem>{item.vote_count}</TitleItem>
@@ -103,7 +106,7 @@ const MovieCard = React.memo<IMovieCardProps>(({ index, item, scrollX }) => {
           </ContainerItensMiddle>
           <ContainerItens>
             <TitleItem>
-              {moment(item.release_date).format('DD/MM/YYYY')}
+              {moment(item.release_date).format('DD/MM/YY')}
             </TitleItem>
             <TextItem>Lançamento</TextItem>
           </ContainerItens>

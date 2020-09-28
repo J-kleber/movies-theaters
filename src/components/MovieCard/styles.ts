@@ -14,12 +14,12 @@ export const EmptyContainer = styled.View`
 `;
 
 export const ClickableContainer = styled(RectButton)`
-  width: 100%;
+  flex: 1;
+  flex-direction: row;
 `;
 
 export const Image = styled.Image`
-  width: 100%;
-  height: ${width * 0.888}px;
+  flex: 1;
   border-radius: 24px;
   margin-bottom: 10px;
   margin: 0px;
@@ -39,16 +39,20 @@ export const Title = styled.Text`
 `;
 
 export const MovieInfo = styled.View`
-  flex: 1;
+  flex: 0.6;
   flex-direction: row;
-  background-color: blue;
+`;
+
+export const ContainerTitle = styled.ScrollView`
+  flex: 1;
+  max-height: 50px;
+  align-content: center;
 `;
 
 export const ContainerItens = styled.View`
-  height: 70px;
-  width: ${width * 0.25}px;
+  flex: 1;
   flex-direction: column;
-  justify-content: flex-end;
+  justify-content: flex-start;
   align-content: center;
   align-items: center;
   margin-top: 60px;
@@ -74,7 +78,7 @@ export const ContainerGraph = styled.View`
 `;
 
 export const TitleItem = styled.Text`
-  font-size: 16px;
+  font-size: ${0.035 * width}px;
   text-align: center;
   color: ${colors.default.commonText};
   font-family: 'RobotoSlab-Medium';
@@ -86,7 +90,7 @@ export const TitleItem = styled.Text`
 `;
 
 export const TextItem = styled.Text`
-  font-size: 12px;
+  font-size: ${0.03 * width}px;
   font-family: 'RobotoSlab-Regular';
   text-align: center;
   color: ${colors.default.commonText};
@@ -115,6 +119,6 @@ export const styles = StyleSheet.create({
   animatedCard: {
     marginHorizontal: 10,
     alignItems: 'center',
-    width: width * 0.71,
+    flex: 1,
   },
 });
