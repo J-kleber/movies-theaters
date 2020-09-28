@@ -1,11 +1,6 @@
-import styled, { css } from 'styled-components/native';
+import styled from 'styled-components/native';
 
-import { StyleSheet, Platform, Dimensions } from 'react-native';
 import { colors } from '../../themes';
-
-const { width, height } = Dimensions.get('window');
-
-const ITEM_SIZE = width * 0.75;
 
 export const ContainerFilter = styled.View`
   margin-top: 20px;

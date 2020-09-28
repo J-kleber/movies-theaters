@@ -1,9 +1,9 @@
-import styled, { css } from 'styled-components/native';
-import { Dimensions, Animated, StyleSheet } from 'react-native';
+import styled from 'styled-components/native';
+import { Dimensions, StyleSheet } from 'react-native';
 import { RectButton } from 'react-native-gesture-handler';
 import { colors } from '../../themes';
 
-const { width, height } = Dimensions.get('window');
+const { width } = Dimensions.get('window');
 
 export const Container = styled.View`
   width: ${width * 0.75}px;

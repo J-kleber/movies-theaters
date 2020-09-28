@@ -1,32 +1,18 @@
-import React, {
-  useCallback,
-  useEffect,
-  useRef,
-  useState,
-  useMemo,
-} from 'react';
-import { StatusBar, FlatList, Dimensions, Animated } from 'react-native';
+import React, { useCallback, useRef, useState, useMemo } from 'react';
+import { FlatList, Dimensions, Animated } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
-import IMovie from '../../interfaces/IMovie';
-import Loading from '../../components/Loading';
 import MovieCard from '../../components/MovieCard';
 import FilterCard from '../../components/FilterCard';
 
-import api, { API_KEY, genres } from '../../services/api';
+import { genres } from '../../services/api';
 import { colors } from '../../themes';
-import { ContainerFilter, Title, TitleFilter } from './styles';
 import { useMovie } from '../../hooks/movies';
 
-interface IMovieParamsProps {
-  results: IMovie[];
-}
+import { ContainerFilter, Title, TitleFilter } from './styles';
 
-// import Genres from './Genres';
-// import Rating from './Rating';
-
-const { width, height } = Dimensions.get('window');
+const { width } = Dimensions.get('window');
 
 const ITEM_SIZE = width * 0.75;
 
@@ -35,60 +21,7 @@ const Dashboard: React.FC = () => {
 
   const scrollX = useRef(new Animated.Value(0)).current;
 
-  // const [movies, setMovies] = useState<IMovie[]>([] as IMovie[]);
-  // const [page, setPage] = useState(1);
   const [filterGender, setFilterGender] = useState([] as number[]);
-
-  // useEffect(() => {
-  //   const getMovie = async (): Promise<void> => {
-  //     const response = await api.get<IMovieParamsProps>(
-  //       `movie/upcoming?api_key=${API_KEY}&language=pt-BR&page=${page}`,
-  //     );
-  //     if (page === 1) {
-  //       setMovies([
-  //         {
-  //           id: -1,
-  //           title: 'empty_effect',
-  //           vote_average: 0,
-  //           vote_count: 0,
-  //           release_date: new Date('2020-10-10'),
-  //           backdrop_path: '',
-  //           poster_path: '',
-  //           genre_ids: [0],
-  //         },
-  //         ...response.data.results,
-  //         {
-  //           id: -2,
-  //           title: 'empty_effect',
-  //           vote_average: 0,
-  //           vote_count: 0,
-  //           release_date: new Date('2020-10-10'),
-  //           backdrop_path: '',
-  //           poster_path: '',
-  //           genre_ids: [0],
-  //         },
-  //       ]);
-  //       setLoading(false);
-  //     } else {
-  //       setMovies(oldMovies => [
-  //         ...oldMovies
-  //           .filter(movie => movie.id !== -2)
-  //           .concat(response.data.results, {
-  //             id: -2,
-  //             title: 'empty_effect',
-  //             vote_average: 0,
-  //             vote_count: 0,
-  //             release_date: new Date('2020-10-10'),
-  //             backdrop_path: '',
-  //             poster_path: '',
-  //             genre_ids: [0],
-  //           }),
-  //       ]);
-  //     }
-  //   };
-  //   console.log('dim dim dim');
-  //   getMovie();
-  // }, [page, setLoading]);
 
   const handleFilterGender = useCallback(
     (id: number) => {

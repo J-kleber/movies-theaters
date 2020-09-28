@@ -1,6 +1,6 @@
-import React, { PureComponent, memo, useMemo } from 'react';
+import React, { useMemo } from 'react';
 
-import { Animated, Dimensions, Text, View } from 'react-native';
+import { Animated, Dimensions } from 'react-native';
 
 import { ProgressCircle } from 'react-native-svg-charts';
 import moment from 'moment';
