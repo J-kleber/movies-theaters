@@ -65,7 +65,7 @@ describe('MovieDetails Page', () => {
     });
   });
 
-  it('should be able to get movie details without poster path', async () => {
+  it('should be able to get movie details without backdrop path', async () => {
     const { getByTestId } = render(
       <MovieDetails
         route={{
@@ -76,8 +76,8 @@ describe('MovieDetails Page', () => {
               vote_average: 10,
               vote_count: 10000,
               release_date: new Date('2012-05-20'),
-              backdrop_path: '/imagem_backdrop.png',
-              poster_path: '',
+              backdrop_path: '',
+              poster_path: '/imagem_poster.png',
               genre_ids: [1, 2, 3],
             },
           },
@@ -91,8 +91,8 @@ describe('MovieDetails Page', () => {
       vote_average: 10,
       vote_count: 10000,
       release_date: new Date('2012-05-20'),
-      backdrop_path: '/imagem_backdrop.png',
-      poster_path: '',
+      backdrop_path: '',
+      poster_path: '/imagem_poster.png',
       genre_ids: [1, 2, 3],
       genres: [{ name: 'action', id: 1 }],
       spoken_languages: [{ iso_639_1: 'en', name: 'English' }],
@@ -109,7 +109,7 @@ describe('MovieDetails Page', () => {
     await waitFor(() => {
       expect(image.props.source).toEqual(
         expect.objectContaining({
-          uri: `${IMAGE_PATH}/imagem_backdrop.png`,
+          uri: `${IMAGE_PATH}/imagem_poster.png`,
         }),
       );
     });
@@ -165,7 +165,7 @@ describe('MovieDetails Page', () => {
     });
   });
 
-  it('should be able to get movie details without image', async () => {
+  it('should be able to return to the dashboard', async () => {
     const { getByTestId } = render(
       <MovieDetails
         route={{
