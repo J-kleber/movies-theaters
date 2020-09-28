@@ -4,8 +4,7 @@ import { useNavigation } from '@react-navigation/native';
 import { RectButton } from 'react-native-gesture-handler';
 import { ProgressCircle } from 'react-native-svg-charts';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
-import { FlatList } from 'react-native';
-
+import { FlatList, Dimensions } from 'react-native';
 import api, { API_KEY, IMAGE_PATH } from '../../services/api';
 
 import { colors } from '../../themes';
@@ -32,6 +31,8 @@ import {
   ContainerGraph,
   TextScore,
 } from './styles';
+
+const { width } = Dimensions.get('window');
 
 interface IMovieDetailsProps {
   route: {
@@ -164,7 +165,7 @@ const MovieDetails: React.FC<IMovieDetailsProps> = ({ route }) => {
             {!!movieDetail.vote_average && (
               <ContainerGraph>
                 <ProgressCircle
-                  style={{ width: 200, height: 100 }}
+                  style={{ height: width * 0.145, width: width * 0.145 }}
                   progress={movieDetail.vote_average / 10}
                   progressColor={colors.default.progressBar}
                   backgroundColor={colors.default.backgroundProgressBar}

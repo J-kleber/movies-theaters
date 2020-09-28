@@ -1,6 +1,9 @@
+import { Dimensions } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import styled from 'styled-components/native';
 import { colors } from '../../themes';
+
+const { width } = Dimensions.get('window');
 
 export const Container = styled.View`
   flex: 1;
@@ -32,12 +35,13 @@ export const BottomContent = styled(LinearGradient)`
 
 export const ContainerTitle = styled.ScrollView`
   flex: 1;
+  max-height: 70px;
 `;
 
 export const Title = styled.Text`
   margin: 0px 30px;
   margin-top: 10px;
-  font-size: 36px;
+  font-size: ${width * 0.08}px;
   color: ${colors.default.commonText};
   font-family: 'RobotoSlab-Medium';
   font-weight: bold;
@@ -82,7 +86,7 @@ export const SubTitle = styled.Text`
 `;
 
 export const DescriptionContainer = styled.ScrollView`
-  flex: 0.8;
+  flex: 1;
   margin: 0px 30px;
   margin-top: 20px;
 `;
@@ -99,8 +103,9 @@ export const OtherInfosContainer = styled.View`
 `;
 
 export const ContainerGraph = styled.View`
-  height: 110px;
-  width: 110px;
+  height: ${width * 0.17}px;
+  width: ${width * 0.17}px;
+
   margin-right: 30px;
   align-items: center;
   justify-content: center;
