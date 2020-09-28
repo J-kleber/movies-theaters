@@ -17,8 +17,9 @@ const FilterCard = React.memo<IFilterCardProps>(
         onPress={() => {
           handleFilterGender(item.id);
         }}
+        testID="filter-card-item"
       >
-        <Title>{item.name}</Title>
+        <Title testID="title-card-item">{item.name}</Title>
       </Container>
     );
   },

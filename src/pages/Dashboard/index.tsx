@@ -7,7 +7,7 @@ import React, {
 } from 'react';
 import { StatusBar, FlatList, Dimensions, Animated } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
-import Feather from 'react-native-vector-icons/Feather';
+import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
 import IMovie from '../../interfaces/IMovie';
 import Loading from '../../components/Loading';
@@ -139,6 +139,7 @@ const Dashboard: React.FC = () => {
         renderItem={({ item, index }) => (
           <MovieCard index={index} item={item} scrollX={scrollX} />
         )}
+        testID="list-movies"
       />
     );
   }, [filterGender, movies, scrollX, page, setPage]);
@@ -146,7 +147,12 @@ const Dashboard: React.FC = () => {
   return (
     <LinearGradient colors={colors.default.gradient} style={{ flex: 1 }}>
       <Title>
-        <Feather name="film" size={30} color={colors.default.filmIcon} /> Filmes
+        <FontAwesome5
+          name="ticket-alt"
+          size={30}
+          color={colors.default.filmIcon}
+        />{' '}
+        Filmes
       </Title>
       <ContainerFilter>
         <TitleFilter>Filtros</TitleFilter>
@@ -163,6 +169,7 @@ const Dashboard: React.FC = () => {
               item={item}
             />
           )}
+          testID="list-genres"
         />
       </ContainerFilter>
       {animatedFlatList}

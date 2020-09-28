@@ -11,7 +11,11 @@ const Loading: React.FC = () => (
     <ImageBackground source={loadingImg} style={{ flex: 1 }} />
     <Container>
       <TextLoading>Carregando </TextLoading>
-      <ActivityIndicator color={colors.default.progressBar} size={50} />
+      <ActivityIndicator
+        color={colors.default.progressBar}
+        size={50}
+        testID={'activity-indicator'}
+      />
     </Container>
   </>
 );

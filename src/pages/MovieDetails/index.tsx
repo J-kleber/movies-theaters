@@ -82,7 +82,10 @@ const MovieDetails: React.FC<IMovieDetailsProps> = ({ route }) => {
       <Container>
         <TopContent>
           <Header>
-            <RectButton onPress={() => goBack()}>
+            <RectButton
+              onPress={() => goBack()}
+              testID="movie-details-back-button"
+            >
               <FontAwesome5
                 name="long-arrow-alt-left"
                 size={25}
@@ -92,7 +95,7 @@ const MovieDetails: React.FC<IMovieDetailsProps> = ({ route }) => {
           </Header>
           <Image
             source={
-              !movie.poster_path || !movie.backdrop_path
+              !movie.poster_path && !movie.backdrop_path
                 ? noImage
                 : {
                     uri: movie.poster_path
@@ -101,10 +104,11 @@ const MovieDetails: React.FC<IMovieDetailsProps> = ({ route }) => {
                   }
             }
             resizeMode="cover"
+            testID="movide-details-image"
           />
         </TopContent>
         <BottomContent colors={colors.default.gradient}>
-          <Title>{movieDetail.title}</Title>
+          <Title testID="movie-title">{movieDetail.title}</Title>
           {!!movieDetail.genres && (
             <TagsContainer>
               <FlatList

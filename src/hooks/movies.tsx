@@ -7,7 +7,6 @@ interface IMovieContextProps {
   loading: boolean;
   movies: IMovie[];
   setPage: React.Dispatch<React.SetStateAction<number>>;
-  setMovies: React.Dispatch<React.SetStateAction<IMovie[]>>;
 }
 
 const MovieContext = createContext<IMovieContextProps>(
@@ -28,6 +27,7 @@ export const MovieProvider: React.FC = ({ children }) => {
       const response = await api.get<IMovieParamsProps>(
         `movie/upcoming?api_key=${API_KEY}&language=pt-BR&page=${page}`,
       );
+
       if (page === 1) {
         setMovies([
           {
@@ -70,14 +70,11 @@ export const MovieProvider: React.FC = ({ children }) => {
         ]);
       }
     };
-    console.log(page);
     getMovie();
   }, [page]);
 
   return (
-    <MovieContext.Provider
-      value={{ page, movies, loading, setPage, setMovies }}
-    >
+    <MovieContext.Provider value={{ page, movies, loading, setPage }}>
       {children}
     </MovieContext.Provider>
   );
@@ -86,8 +83,5 @@ export const MovieProvider: React.FC = ({ children }) => {
 export function useMovie(): IMovieContextProps {
   const context = useContext(MovieContext);
 
-  if (!context) {
-    throw new Error('useMovie must be used within a MovieProvider');
-  }
   return context;
 }

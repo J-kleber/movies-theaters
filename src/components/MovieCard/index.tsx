@@ -37,7 +37,6 @@ const MovieCard = React.memo<IMovieCardProps>(({ index, item, scrollX }) => {
 
   const { width } = Dimensions.get('window');
   const ITEM_SIZE = width * 0.75;
-  const EMPTY_ITEM_SIZE = (width - ITEM_SIZE) / 2;
 
   const inputRange = [
     (index - 2) * ITEM_SIZE,
@@ -66,10 +65,12 @@ const MovieCard = React.memo<IMovieCardProps>(({ index, item, scrollX }) => {
           underlayColor={'trasparent'}
           rippleColor={'transparent'}
           onPress={() => navigate('MovieDetails', { movie: item })}
+          testID="button-movie-details"
         >
           <Image
+            testID={'card-image'}
             source={
-              !item.poster_path || !item.backdrop_path
+              !item.poster_path && !item.backdrop_path
                 ? noImage
                 : {
                     uri: item.poster_path
@@ -109,17 +110,10 @@ const MovieCard = React.memo<IMovieCardProps>(({ index, item, scrollX }) => {
         </MovieInfo>
       </Animated.View>
     );
-  }, [
-    item.poster_path,
-    item.release_date,
-    item.title,
-    item.vote_average,
-    item.vote_count,
-    translateY,
-  ]);
+  }, [translateY, item, navigate]);
 
   if (item.id < 0) {
-    return <EmptyContainer />;
+    return <EmptyContainer testID="movie-details-empty" />;
   }
 
   return <Container>{animatedView}</Container>;
