@@ -139,7 +139,7 @@ const MovieDetails: React.FC<IMovieDetailsProps> = ({ route }) => {
                 .hours(movieDetail.runtime / 60)
                 .format('hh')}h ${moment()
                 .minutes(movieDetail.runtime)
-                .format('mm')}min${movieDetail.runtime}`}
+                .format('mm')}min`}
             </SubTitle>
           )}
           {!!movieDetail.overview && (
