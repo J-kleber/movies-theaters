@@ -3,13 +3,12 @@ import { colors } from '../../themes';
 
 export const Container = styled.View`
   flex: 1;
-  flex-direction: row;
-  position: absolute;
-  justify-content: flex-end;
+  justify-content: center;
   align-content: center;
   align-items: center;
   width: 100%;
   bottom: 0;
+  background: ${colors.default.primaryColor};
 `;
 
 export const TextLoading = styled.Text`
